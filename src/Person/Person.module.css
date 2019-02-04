@@ -6,3 +6,10 @@
     padding: 16px;
     text-align: center;
 }
+
+/* If the window size > 500px, fix width to 450px */
+@media (min-width: 500px) {
+  .Person {
+      width: 450px;
+  }
+}

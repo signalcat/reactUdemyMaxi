@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css'
+import styles from './App.module.css';
 import Person from './Person/Person';
 import ValidationComponent from './ValidationComponent/ValidationComponent';
 import CharComponent from './CharComponent/CharComponent';
@@ -106,10 +106,10 @@ class App extends Component {
     // Dynamically change class name
     let classes = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red'); // classes = ['red']
+      classes.push(styles.red); // classes = ['red']
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold'); // classes = ['red', 'bold']
+      classes.push(styles.bold); // classes = ['red', 'bold']
     }
 
     let persons = null;
@@ -146,7 +146,7 @@ class App extends Component {
     )
 
     return (
-      <div className="App" >
+      <div className={styles.App} >
         <p className={classes.join(' ')}>Hi, I'm a REACT APP</p>
         <input type="text" onChange={(event) => this.countLenHandler(event)} 
                value={this.state.components.join('')}>

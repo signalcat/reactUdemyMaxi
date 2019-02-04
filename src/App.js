@@ -94,14 +94,8 @@ class App extends Component {
   }
 
   render() {
-    // Inline style
-    const style = {
-      backgroundColor: 'green',
-      font: 'inherit',
-      border: '1px soid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
+    // Define the css class name for the toggle button 
+    let btnClass = '';
 
     // Dynamically change class name
     let classes = [];
@@ -126,11 +120,10 @@ class App extends Component {
           })}
         </div>
       );
-      // Dynamically change the button color
-      style.backgroundColor = 'red';
+      
+      // Change the class name after click
+      btnClass = styles.Red;
     }
-
-
 
     let components = null;
     components = (
@@ -153,7 +146,7 @@ class App extends Component {
         </input>
         <ValidationComponent len = {this.state.lenAlert}/>
         <button 
-          style={style}
+          className={btnClass}
           onClick={this.toggleHandler}>Toggle</button>
         {persons}
         {components}

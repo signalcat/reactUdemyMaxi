@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import styles from './App.module.css';
 import Persons from '../components/Persons/Persons';
-import ValidationComponent from '../ValidationComponent/ValidationComponent';
-import CharComponent from '../CharComponent/CharComponent';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -41,11 +40,11 @@ class App extends Component {
     this.setState({persons: persons});
   }
 
-  deleteComponentHandler = (componentIdx) => {
-    const components = [...this.state.components];
-    components.splice(componentIdx, 1);
-    this.setState({components: components});
-  } 
+  // deleteComponentHandler = (componentIdx) => {
+  //   const components = [...this.state.components];
+  //   components.splice(componentIdx, 1);
+  //   this.setState({components: components});
+  // } 
 
   nameChangedHandler = (event, id) => {
     // Return the index of the person which matches the input id 
@@ -76,76 +75,34 @@ class App extends Component {
     this.setState({showPersons: !this.state.showPersons})
   }
 
-  // showCursorHandler = (e) => {
-  //   this.setState({cursorX: e.screenX, cursorY: e.screenY,
-  //                  pageX: e.pageX, pageY: e.pageY,
-  //                  clientX: e.clientX, clientY: e.pageY
-  //   });
-  // }
-
-  countLenHandler = (event) => {
+  // countLenHandler = (event) => {
     
-    this.setState({components: event.target.value.split('')});
+  //   this.setState({components: event.target.value.split('')});
 
-    const len = event.target.value.length;
+  //   const len = event.target.value.length;
 
-    if (len < 5) this.setState({lenAlert: "TooShort!"});
-    else if (len > 10) this.setState({lenAlert: "TooLong!"});
-  }
+  //   if (len < 5) this.setState({lenAlert: "TooShort!"});
+  //   else if (len > 10) this.setState({lenAlert: "TooLong!"});
+  // }
 
   render() {
     // Define the css class name for the toggle button 
-    let btnClass = '';
-
-    // Dynamically change class name
-    let classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push(styles.red); // classes = ['red']
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push(styles.bold); // classes = ['red', 'bold']
-    }
-
+    
     let persons = null;
-    if (this.state.showPersons) {
-      persons = (
-        <div> 
-          <Persons 
-            persons={this.state.persons}
-            clicked={this.deleteComponentHandler}
-            changed={this.nameChangedHandler}/>
-        </div>
-      );
-      
-      // Change to the nested class name after click
-      btnClass = styles.Red;
-    }
 
-    let components = null;
-    components = (
-      <div>
-        {this.state.components.map((component, index) => {
-          return <CharComponent
-                  char = {component}
-                  click = {this.deleteComponentHandler.bind(this, index)}
-                  
-          />
-        })}
-      </div>
-    )
+    if (this.state.showPersons) {
+      persons = <Persons 
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler}/>
+    }
 
     return (
       <div className={styles.App} >
-        <p className={classes.join(' ')}>Hi, I'm a REACT APP</p>
-        <input type="text" onChange={(event) => this.countLenHandler(event)} 
-               value={this.state.components.join('')}>
-        </input>
-        <ValidationComponent len = {this.state.lenAlert}/>
-        <button 
-          className={btnClass}
-          onClick={this.toggleHandler}>Toggle</button>
+        <Cockpit showPersons={this.state.showPersons}
+            persons={this.state.persons} 
+            clicked={this.toggleHandler}/> 
         {persons}
-        {components}
       </div>
     );
   }

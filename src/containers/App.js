@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styles from './App.module.css';
-import Person from './Person/Person';
-import ValidationComponent from './ValidationComponent/ValidationComponent';
-import CharComponent from './CharComponent/CharComponent';
+import Persons from '../components/Persons/Persons';
+import ValidationComponent from '../ValidationComponent/ValidationComponent';
+import CharComponent from '../CharComponent/CharComponent';
 
 class App extends Component {
   state = {
@@ -110,18 +110,14 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div> 
-          {this.state.persons.map((person, index) => {
-            return <Person 
-                    click = {this.deletePersonHandler.bind(this, index)}
-                    name = {person.name} 
-                    age = {person.age}
-                    key = {person.id}
-                    changed = {(event) => this.nameChangedHandler(event, person.id)} />
-          })}
+          <Persons 
+            persons={this.state.persons}
+            clicked={this.deleteComponentHandler}
+            changed={this.nameChangedHandler}/>
         </div>
       );
       
-      // Change the class name after click
+      // Change to the nested class name after click
       btnClass = styles.Red;
     }
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './Cockpit.module.css';
-import ValidationComponent from '../ValidationComponent/ValidationComponent'
 
 const cockpit = (props) => {
    

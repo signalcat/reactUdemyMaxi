@@ -4,17 +4,38 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: 'x1', name: 'Max', age: 28},
-      { id: 'f3', name: 'Manu', age: 21},
-      { id: 'd2', name: 'Steph', age: 25}
-    ],
-    showPersons: false,
-    len: 0,
-    lenAlert: 'empty',
-    components: []
+  constructor(props) {
+    super(props);
+    console.log('[App.js]Inside constructor', props);
+    
+    // Either here or outside is fine to initialize state
+    this.state = {
+      persons: [
+        { id: 'x1', name: 'Max', age: 28},
+        { id: 'f3', name: 'Manu', age: 21},
+        { id: 'd2', name: 'Steph', age: 25}
+      ],
+      showPersons: false,
+      len: 0,
+      lenAlert: 'empty',
+      components: []
+    }
+
   }
+
+  componentDidMount() {
+    console.log('[App.js]Inside didMount');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
+
 
   // switchNameHandler = (newName) => {
   //   //console.log('Was clicked!');
@@ -86,8 +107,7 @@ class App extends Component {
   // }
 
   render() {
-    // Define the css class name for the toggle button 
-    
+    console.log('[App.js]Inside render')
     let persons = null;
 
     if (this.state.showPersons) {

@@ -1,7 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './Cockpit.module.css';
 
 const cockpit = (props) => {
+
+    // useEffect(() => {
+    //     console.log('[Cockpit.js] useEffect');
+    //     // http request...
+    //     setTimeout(() => {
+    //         alert('Saved data to cloud!');
+    //     }, 1000);
+    // }, []);
+
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect');
+        // http request...
+        setTimeout(() => {
+            alert('Saved data to cloud!');
+        }, 1000);
+    }, [props.persons]);
    
     // Dynamically change class name
     let classes = [];
